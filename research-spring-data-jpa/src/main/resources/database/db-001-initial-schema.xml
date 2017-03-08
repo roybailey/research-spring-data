@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="roybailey">
+
+        <createTable tableName="CATEGORY">
+            <column name="ID" type="long" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="VERSION" type="long">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="EXTERNAL_ID" type="varchar(8)" />
+            <column name="CATEGORY_NAME" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PICTURE" type="varchar(128)" />
+        </createTable>
+
+
+        <createTable tableName="SUPPLIER">
+            <column name="ID" type="long" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="VERSION" type="long">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="EXTERNAL_ID" type="varchar(8)" />
+            <column name="COMPANY_NAME" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="HOMEPAGE" type="varchar(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CONTACT" type="varchar(50)" />
+            <column name="ADDRESS" type="varchar(50)" />
+            <column name="PHONE" type="varchar(50)" />
+            <column name="FAX" type="varchar(50)" />
+        </createTable>
+
+
+        <createTable tableName="PRODUCT">
+            <column name="ID" type="long" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="VERSION" type="long">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="EXTERNAL_ID" type="varchar(8)" />
+            <column name="PRODUCT_NAME" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UNIT_PRICE" type="decimal">
+                <constraints nullable="false"/>
+            </column>
+            <column name="QUANTITY_PER_UNIT" type="varchar(50)" />
+            <column name="UNITS_IN_STOCK" type="long" />
+            <column name="UNITS_ON_ORDER" type="long" />
+            <column name="REORDER_LEVEL" type="long" />
+            <column name="DISCONTINUED" type="boolean" />
+
+            <column name="supplier_id" type="long">
+                <constraints nullable="true" foreignKeyName="fk_supplier" references="supplier(id)"/>
+            </column>
+            <column name="category_id" type="long">
+                <constraints nullable="true" foreignKeyName="fk_category" references="category(id)"/>
+            </column>
+
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>

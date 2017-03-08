@@ -1,0 +1,17 @@
+= Research Spring Data Examples
+
+=== Motivation
+
+To stand up a working samples of Spring Data frameworks
+
+==== Many Thanks
+
+Spring `http://projects.spring.io/spring-data/`
+
+
+==== Getting Started
+
+run `mvn clean install` to build application.
+
+run `mvn spring-boot:run` to run the application from a sample module.
+
