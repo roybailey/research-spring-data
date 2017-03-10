@@ -19,6 +19,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
@@ -59,7 +60,7 @@ public class ProductControllerTest {
         Product saveProduct(Product newProduct);
 
         @RequestLine("DELETE /product/{id}")
-        void deleteProduct(@Param("id") Long id);
+        Response deleteProduct(@Param("id") Long id);
     }
 
     private ProductApi api;
@@ -125,7 +126,8 @@ public class ProductControllerTest {
         softly.then(allProducts).isNotNull();
         softly.then(allProducts).hasSize(78);
 
-        api.deleteProduct(savedProduct.getId());
+        Response response = api.deleteProduct(savedProduct.getId());
+        softly.then(response.status()).isEqualTo(204);
 
         allProducts = api.getAllProducts();
         softly.then(allProducts).isNotNull();
