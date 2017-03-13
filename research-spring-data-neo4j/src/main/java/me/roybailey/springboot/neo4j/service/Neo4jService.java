@@ -6,6 +6,7 @@ import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.neo4j.template.Neo4jTemplate;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -21,6 +22,12 @@ public class Neo4jService {
     @Autowired
     SessionFactory neo4jSessionFactory;
 
+
+    public Neo4jTemplate getNeo4jTemplate() {
+        return new Neo4jTemplate(neo4jSessionFactory.openSession());
+    }
+
+
     public String loadCypher(String filename) {
         URL url = Resources.getResource(filename);
         String cypher = null;
@@ -32,10 +39,12 @@ public class Neo4jService {
         return cypher;
     }
 
+
     public void runCypher(String cypher) {
         Session session = neo4jSessionFactory.openSession();
         session.query(cypher, Collections.emptyMap());
     }
+
 
     /**
      * Only executes pre-load for embedded driver.

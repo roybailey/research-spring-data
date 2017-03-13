@@ -1,0 +1,3 @@
+= Research Spring Data Common
+
+Capture datafiles and common utilities useful to multiple modules.

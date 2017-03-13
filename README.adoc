@@ -2,16 +2,25 @@
 
 === Motivation
 
-To stand up a working samples of Spring Data frameworks
+To stand up a working samples of Spring Data frameworks.
 
-==== Many Thanks
 
-Spring `http://projects.spring.io/spring-data/`
+==== Shout Out
+
+* http://projects.spring.io/spring-data/[Spring Data]
+* https://github.com/FasterXML/jackson[Jackson JSon/XML]
+* https://github.com/OpenFeign/feign[Open Feign Http Client Framework]
+* https://projectlombok.org/[Project Lombok] for generating Java boilerplate code
+* http://modelmapper.org/[Modal Mapper] for simplifying data transformations between object types
+* http://joel-costigliola.github.io/assertj/[AssertJ] for fluid test assertions
+* https://github.com/google/guava[Guava]
+* https://www.slf4j.org/[Simple Logging Facade for Java (SLF4J)]
+* https://logback.qos.ch/[LogBack]
 
 
 ==== Getting Started
 
 run `mvn clean install` to build application.
 
-run `mvn spring-boot:run` to run the application from a sample module.
-
+Each module is independent and demonstrates particular database type.
+Suggest loading into IDE and reviewing the codebase, using the tests as guide.

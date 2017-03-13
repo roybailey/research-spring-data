@@ -1,0 +1,26 @@
+= Research Spring Data Examples
+
+=== Motivation
+
+Working sample of Spring Data JPA using simple RDBMS with liqibase to handle schema evolution.
+
+
+==== Shout Out
+
+* http://projects.spring.io/spring-data/[Spring Data]
+* http://www.liquibase.org/[Liquibase]
+* http://www.h2database.com/[H2 embedded database]
+
+
+==== Getting Started
+
+run `mvn clean install` to build application.
+
+run `mvn spring-boot:run -Ddatafiles=../research-spring-data-common/src/main/resources/`
+
+open browser:
+
+* `http://localhost:8080/api/jpa/v1/category` will show category data
+* `http://localhost:8080/api/jpa/v1/supplier` will show supplier data
+* `http://localhost:8080/api/jpa/v1/product` will show product data including linked category and supplier data
+* `http://localhost:8080/h2/console` will show H2 embedded database console with database created with liquibase and loaded with sample data

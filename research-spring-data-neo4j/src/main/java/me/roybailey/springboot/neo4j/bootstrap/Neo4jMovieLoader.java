@@ -31,7 +31,9 @@ public class Neo4jMovieLoader implements ApplicationListener<ContextRefreshedEve
     }
 
     private void loadMoviesWithCypher() {
-
+        // only load into embedded database as it will be empty
+        // assume any other database will already have the sample
+        // movie database loaded
         if (neo4jService.setupEmbeddedDatabase()) {
             log.info("Loaded movie database sample into embedded database");
         }

@@ -19,7 +19,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
@@ -28,6 +28,7 @@ import java.util.List;
 @Slf4j
 @RunWith(SpringRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@TestPropertySource(locations = "classpath:application-test.properties")
 @SpringBootTest(classes = SpringBootJpaApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ProductControllerTest {
 
@@ -41,29 +42,29 @@ public class ProductControllerTest {
     public final JUnitBDDSoftAssertions softly = new JUnitBDDSoftAssertions();
 
     @Headers("Accept: application/json")
-    public interface ProductApi {
+    public interface SpringDataJpaApi {
 
-        @RequestLine("GET /category")
+        @RequestLine("GET /api/jpa/v1/category")
         List<Category> getAllCategories();
 
-        @RequestLine("GET /supplier")
+        @RequestLine("GET /api/jpa/v1/supplier")
         List<Supplier> getAllSuppliers();
 
-        @RequestLine("GET /product")
+        @RequestLine("GET /api/jpa/v1/product")
         List<Product> getAllProducts();
 
-        @RequestLine("GET /product/{id}")
+        @RequestLine("GET /api/jpa/v1/product/{id}")
         Product getProduct(@Param("id") Long id);
 
         @Headers("Content-Type: application/json")
-        @RequestLine("POST /product")
+        @RequestLine("POST /api/jpa/v1/product")
         Product saveProduct(Product newProduct);
 
-        @RequestLine("DELETE /product/{id}")
+        @RequestLine("DELETE /api/jpa/v1/product/{id}")
         Response deleteProduct(@Param("id") Long id);
     }
 
-    private ProductApi api;
+    private SpringDataJpaApi api;
 
     @Before
     public void apiSetup() {
@@ -71,7 +72,7 @@ public class ProductControllerTest {
                 .encoder(new JacksonEncoder())
                 .decoder(new JacksonDecoder())
                 .logLevel(Logger.Level.BASIC)
-                .target(ProductApi.class, "http://localhost:"+port);
+                .target(SpringDataJpaApi.class, "http://localhost:"+port);
     }
 
     @Test

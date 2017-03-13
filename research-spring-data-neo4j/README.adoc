@@ -1,0 +1,22 @@
+= Research Spring Data Examples
+
+=== Motivation
+
+Working sample of Spring Data Neo4j Graph Database.
+
+
+==== Shout Out
+
+* http://projects.spring.io/spring-data/[Spring Data]
+* http://www.neo4j.com/[Neo4j Graph Database]
+
+
+==== Getting Started
+
+run `mvn clean install` to build application.
+
+run `mvn spring-boot:run`
+
+open browser:
+
+* `http://localhost:8080/api/neo4j/v1/movie` shows all movies data
